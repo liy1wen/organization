@@ -42,6 +42,10 @@ const router = new VueRouter({
             component: () => import ('@/pages/login') 
         },
         {
+            path: '/login',
+            redirect: '/'
+        },
+        {
             path: '/fail',
             name: 'fail',
             component: () => import ('@/pages/fail.vue')

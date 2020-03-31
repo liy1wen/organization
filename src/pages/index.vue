@@ -3,10 +3,10 @@
     <el-aside>
       <h5 class="title">
         <i class="el-icon-s-unfold" @click="isCollapse = !isCollapse">
-          <span v-if="!isCollapse" class="name">中医管理平台</span>
+          <span v-if="!isCollapse" class="name">商家管理平台</span>
         </i>
       </h5>
-      <el-menu :default-openeds="['0']" router background-color="#545c64" :collapse="isCollapse" text-color="#fff" class="el-menu-vertical-demo">
+      <el-menu router background-color="#545c64" :collapse="isCollapse" text-color="#fff" class="el-menu-vertical-demo" unique-opened>
         <el-menu-item index="home">
           <i class="el-icon-menu"></i>
           <span>主页</span>
@@ -18,10 +18,10 @@
             <span slot="title">账号管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="deleteAccount"><i class="el-icon-location"></i>删除账号</el-menu-item>
-            <el-menu-item index="addAccount"><i class="el-icon-location"></i>添加账号</el-menu-item>
-            <el-menu-item index="editAccount"><i class="el-icon-location"></i>编辑账号</el-menu-item>
-            <el-menu-item index="accountList"><i class="el-icon-location"></i>账号列表</el-menu-item>
+            <el-menu-item index="/deleteAccount"><i class="el-icon-location"></i>删除账号</el-menu-item>
+            <el-menu-item index="/addAccount"><i class="el-icon-location"></i>添加账号</el-menu-item>
+            <el-menu-item index="/editAccount"><i class="el-icon-location"></i>编辑账号</el-menu-item>
+            <el-menu-item index="/accountList"><i class="el-icon-location"></i>账号列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
@@ -31,8 +31,8 @@
             <span slot="title">账号注册</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="deleteAccount">Option 1</el-menu-item>
-            <el-menu-item index="accountList">账号列表</el-menu-item>
+            <el-menu-item index="/deleteAccount">Option 1</el-menu-item>
+            <el-menu-item index="/accountList">账号列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
@@ -50,22 +50,21 @@
     </el-aside>
     <el-container>
       <el-header style="text-align: right;">
-        <el-dropdown>
+        <el-dropdown @command="handleCommand">
           <el-avatar
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
             class="head-img"
           ></el-avatar>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>设置</el-dropdown-item>
-            <el-dropdown-item @click="logout">退出</el-dropdown-item>
+            <el-dropdown-item command="personInfo">个人中心</el-dropdown-item>
+            <el-dropdown-item command="set">设置</el-dropdown-item>
+            <el-dropdown-item command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
         <span class="username">{{ info.username }}</span>
       </el-header>
       <el-main>
         <router-view></router-view>
-        <button @click="logout">退出</button>
       </el-main>
     </el-container>
   </el-container>
@@ -76,7 +75,7 @@
   export default {
     data() {
       return {
-        isCollapse: false
+        isCollapse: false,
       };
     },
     computed: {
@@ -86,10 +85,16 @@
       })
     },
     methods: {
-      logout() {
-        window.localStorage.clear()
-        this.$router.push('/')
-      }
+      handleCommand(command) {
+        if(command == 'logout'){
+           this.$confirm('是否退出登陆?')
+          .then(()=>{
+            window.localStorage.clear()
+            this.$router.push('/')
+          })
+          .catch(() => {});
+        }
+      },
     }
   };
 </script>
@@ -114,26 +119,33 @@
     }
     .el-menu {
       border-right: none;
+      .el-menu-item-group__title {
+        display: none;
+      }
     }
     .el-menu-vertical-demo:not(.el-menu--collapse) {
       width: 200px;
     }
   }
   .el-header {
+    padding: 0 60px;
     color: #ffffff;
     font-size: 18px;
     background-color: #b3c0d1;
     line-height: 60px;
-    .head-img {
-      display: inline-block;
-      position: relative;
-      top: 10px;
-      right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .el-dropdown {
+      display: flex;
+      .head-img {
+        margin-right: 10px;
+      }
     }
-    .username {
-      position: relative;
-      bottom: 3px;
-    }
+  }
+  .el-main{
+    background: #e4e4e4;
+    box-sizing: border-box;
   }
 }
 </style>
