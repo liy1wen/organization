@@ -7,48 +7,28 @@ const router = new VueRouter({
         { 
             path: '/index',
             name: 'index',
-            component: () => import ('@/pages/index.vue'),
+            component: () => import ('@pages/index/index.vue'),
             children:[
                 {
                     path: '/home',
                     name: 'home',
-                    component: () => import ('@/pages/home.vue')
+                    component: () => import ('@pages/home/home.vue')
                 },
                 {
-                    path: '/addAccount',
-                    name: 'addAccount',
-                    component: () => import ('@/pages/addAccount.vue')
+                    path: '/userList',
+                    name: 'userList',
+                    component: () => import ('@pages/userList/userList.vue')
                 },
-                {
-                    path: '/accountList',
-                    name: 'accountList',
-                    component: () => import ('@/pages/accountList.vue')
-                },
-                {
-                    path: '/editAccount',
-                    name: 'editAccount',
-                    component: () => import ('@/pages/editAccount.vue')
-                },
-                {
-                    path: '/deleteAccount',
-                    name: 'deleteAccount',
-                    component: () => import ('@/pages/deleteAccount.vue')
-                }
             ]
         },
         {
             path: '/',
             name: 'login',
-            component: () => import ('@/pages/login') 
+            component: () => import ('@pages/login/login.vue') 
         },
         {
             path: '/login',
             redirect: '/'
-        },
-        {
-            path: '/fail',
-            name: 'fail',
-            component: () => import ('@/pages/fail.vue')
         },
     ]
 })

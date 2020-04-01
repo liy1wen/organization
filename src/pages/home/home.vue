@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import card from '../components/card'
+import card from '@c/card'
 export default {
   components:{
     card

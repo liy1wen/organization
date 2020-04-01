@@ -15,35 +15,29 @@
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-location"></i>
-            <span slot="title">账号管理</span>
+            <span slot="title">用户管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/deleteAccount"><i class="el-icon-location"></i>删除账号</el-menu-item>
-            <el-menu-item index="/addAccount"><i class="el-icon-location"></i>添加账号</el-menu-item>
-            <el-menu-item index="/editAccount"><i class="el-icon-location"></i>编辑账号</el-menu-item>
-            <el-menu-item index="/accountList"><i class="el-icon-location"></i>账号列表</el-menu-item>
+            <el-menu-item index="/userList">用户列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-menu"></i>
-            <span slot="title">账号注册</span>
+            <span slot="title">权限管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/deleteAccount">Option 1</el-menu-item>
             <el-menu-item index="/accountList">账号列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
             <i class="el-icon-document"></i>
-            <span slot="title">账号查询</span>
+            <span slot="title">商品管理</span>
           </template>
           <el-menu-item-group>
             <el-menu-item index="fail">Option 1</el-menu-item>
-            <el-menu-item index="3-2">Option 2</el-menu-item>
-            <el-menu-item index="3-3">Option 3</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

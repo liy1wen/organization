@@ -1,7 +1,7 @@
 <template>
   <div class="contain">
     <el-form :model="loginInfo" :rules="rules" ref="ruleForm" label-width="0" class="demo-ruleForm">
-      <h2 class="title">admin管理平台</h2>
+      <h2 class="title f20">admin管理平台</h2>
       <el-form-item label="" prop="username">
         <el-input prefix-icon="iconfont icon-icon" type="text" v-model="loginInfo.username" placeholder="请输入账号"></el-input>
       </el-form-item>
@@ -54,9 +54,7 @@ export default {
               duration: "1000"
             });
             loading.close();
-            this.$router.push({
-                path: 'home'
-            });
+            this.$router.push('/home');
           }, 1000);
         } else {
           this.$message({
@@ -82,7 +80,7 @@ export default {
   justify-content: center;
   align-items: center;
   .el-form {
-    width: 300px;
+    width: 340px;
     background: #ffffff;
     color: #333;
     border-radius: 5px;
