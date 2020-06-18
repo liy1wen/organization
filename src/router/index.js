@@ -7,24 +7,24 @@ const router = new VueRouter({
         { 
             path: '/index',
             name: 'index',
-            component: () => import ('@pages/index/index.vue'),
+            component: () => import ('@/pages/index/index.vue'),
             children:[
                 {
                     path: '/home',
                     name: 'home',
-                    component: () => import ('@pages/home/home.vue')
+                    component: () => import ('@/pages/home/home.vue')
                 },
                 {
                     path: '/userList',
                     name: 'userList',
-                    component: () => import ('@pages/userList/userList.vue')
+                    component: () => import ('@/pages/userList/userList.vue')
                 },
             ]
         },
         {
             path: '/',
             name: 'login',
-            component: () => import ('@pages/login/login.vue') 
+            component: () => import ('@/pages/login/login.vue') 
         },
         {
             path: '/login',

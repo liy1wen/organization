@@ -52,9 +52,8 @@ module.exports = {
         //     }
         // })
         Object.assign(config.resolve.alias, {
-            '@c': path.resolve(__dirname, './src/components'),
-            '@assets': path.resolve(__dirname, './src/assets'),
-            '@pages': path.resolve(__dirname, './src/pages')
+            '@': path.resolve(__dirname, './src'),
+            '@c': path.resolve(__dirname, './src/components')
         })
     },
     css: {
@@ -66,15 +65,8 @@ module.exports = {
         // 为预处理器的 loader 传递自定义选项。比如传递给
         // Css-loader 时，使用 `{ Css: { ... } }`。
         loaderOptions: {
-            css: {
-                // data: '@import "./src/assets/css/app.css";'
-                // 这里的选项会传递给 css-loader
-            },
-//             postcss: {
-//                 // 这里的选项会传递给 postcss-loader
-//             },
-            sass: {
-                // data: '@import "@/assets/css/varibles.scss";'
+            scss: {
+                prependData: '@import "@/assets/css/varibles.scss";'
             }
         }
     },
