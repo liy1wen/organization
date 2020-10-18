@@ -6,7 +6,14 @@
           <span v-if="!isCollapse" class="name">商家管理平台</span>
         </i>
       </h5>
-      <el-menu router background-color="#545c64" :collapse="isCollapse" text-color="#fff" class="el-menu-vertical-demo" unique-opened>
+      <el-menu
+        router
+        background-color="#545c64"
+        :collapse="isCollapse"
+        text-color="#fff"
+        class="el-menu-vertical-demo"
+        unique-opened
+      >
         <el-menu-item index="home">
           <i class="el-icon-menu"></i>
           <span>主页</span>
@@ -43,7 +50,7 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header style="text-align: right;">
+      <el-header style="text-align: right">
         <el-dropdown @command="handleCommand">
           <el-avatar
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
@@ -55,7 +62,7 @@
             <el-dropdown-item command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span class="username">{{ info.username }}</span>
+        <span class="username">{{ info.email }}</span>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -65,32 +72,32 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
-  export default {
-    data() {
-      return {
-        isCollapse: false,
-      };
-    },
-    computed: {
-      ...mapState({
-        // 'info'
-        info: state => state.info
-      })
-    },
-    methods: {
-      handleCommand(command) {
-        if(command == 'logout'){
-           this.$confirm('是否退出登陆?')
-          .then(()=>{
-            window.localStorage.clear()
-            this.$router.push('/')
+import { mapState } from 'vuex';
+export default {
+  data() {
+    return {
+      isCollapse: false,
+    };
+  },
+  computed: {
+    ...mapState({
+      // 'info'
+      info: (state) => state.info,
+    }),
+  },
+  methods: {
+    handleCommand(command) {
+      if (command == 'logout') {
+        this.$confirm('是否退出登陆?')
+          .then(() => {
+            window.localStorage.clear();
+            this.$router.push('/');
           })
           .catch(() => {});
-        }
-      },
-    }
-  };
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -137,10 +144,9 @@
       }
     }
   }
-  .el-main{
+  .el-main {
     background: #e4e4e4;
     box-sizing: border-box;
   }
 }
 </style>
-
