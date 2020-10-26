@@ -1,3 +1,6 @@
+import {
+    Message
+} from 'element-ui'
 import axios from 'axios'
 import {
     baseUrl
@@ -21,17 +24,15 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
     response => response.status === 200 ? Promise.resolve(response) : Promise.reject(response),
     error => {
-        // console.log('_______________', error.response)
+        console.log('_______________', error.response)
         if (error.response.status == 401) {
-            // Toast('用户未登录');
+            Message.error('用户未登录');
         } else if (error.response.status == 403) {
-            // Toast('登录过期，请重新登录');
+            Message.error('暂无访问权限');
         } else if (error.response.status == 404) {
-            // Toast('网络请求不存在');
+            Message.error('网络请求不存在');
         } else {
-            // console.log(error.response.data.message, 123);
-            // this.$message.error(error.response.data.message);
-            console.log(this);
+            Message.error(error.response.data.message);
         }
     });
 export default instance

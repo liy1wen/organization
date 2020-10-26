@@ -38,24 +38,23 @@ export default {
   data() {
     return {
       loginInfo: {
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       },
       rules: {
-        email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+        email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
     };
   },
   created() {},
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate(async (valid) => {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
-          const { data } = await this.$api.user.login(this.loginInfo);
-          this.$store.dispatch('changeInfo', this.loginInfo);
-          window.localStorage.setItem('token', data.token);
-          this.$router.push('/home');
+          this.$store.dispatch("login/login", this.loginInfo).then((res) => {
+            // this.$router.push("/home");
+          });
         }
       });
     },
@@ -68,7 +67,7 @@ export default {
 <style scoped lang="scss">
 .contain {
   height: 100%;
-  background: url('https://img-blog.csdnimg.cn/20200324200558321.jpg') no-repeat;
+  background: url("https://img-blog.csdnimg.cn/20200324200558321.jpg") no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;

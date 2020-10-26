@@ -62,7 +62,7 @@
             <el-dropdown-item command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span class="username">{{ info.email }}</span>
+        <span class="username">{{ getEmail }}</span>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -80,18 +80,15 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      // 'info'
-      info: (state) => state.info,
-    }),
+    ...mapGetters("login", ["getEmail"]),
   },
   methods: {
     handleCommand(command) {
-      if (command == 'logout') {
-        this.$confirm('是否退出登陆?')
+      if (command == "logout") {
+        this.$confirm("是否退出登陆?")
           .then(() => {
             window.localStorage.clear();
-            this.$router.push('/');
+            this.$router.push("/");
           })
           .catch(() => {});
       }

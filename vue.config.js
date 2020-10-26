@@ -66,9 +66,9 @@ module.exports = {
         // Css-loader 时，使用 `{ Css: { ... } }`。
         loaderOptions: {
             scss: {
-                prependData: '@import "@/assets/css/index.scss";'
+                prependData: `@import "./src/assets/css/index.scss";`
             }
-        }
+        },
     },
     chainWebpack: config => {
         // config.optimization.minimize(true);
