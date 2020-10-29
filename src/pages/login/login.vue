@@ -7,7 +7,7 @@
       label-width="0"
       class="demo-ruleForm"
     >
-      <h2 class="title f20">Code李管理平台</h2>
+      <h2 class="title f20">机构管理平台</h2>
       <el-form-item label="" prop="email">
         <el-input
           prefix-icon="iconfont icon-icon"
@@ -53,7 +53,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.dispatch("login/login", this.loginInfo).then((res) => {
-            // this.$router.push("/home");
+            this.$router.push("home");
           });
         }
       });

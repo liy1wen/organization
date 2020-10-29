@@ -3,7 +3,7 @@
     <el-aside>
       <h5 class="title">
         <i class="el-icon-s-unfold" @click="isCollapse = !isCollapse">
-          <span v-if="!isCollapse" class="name">商家管理平台</span>
+          <span v-if="!isCollapse" class="name">机构管理平台</span>
         </i>
       </h5>
       <el-menu
@@ -22,29 +22,38 @@
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-location"></i>
-            <span slot="title">用户管理</span>
+            <span slot="title">机构管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/userList">用户列表</el-menu-item>
+            <el-menu-item index="/userList">机构列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-menu"></i>
-            <span slot="title">权限管理</span>
+            <span slot="title">用户管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/accountList">账号列表</el-menu-item>
+            <el-menu-item index="/accountList">用户列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
             <i class="el-icon-document"></i>
-            <span slot="title">商品管理</span>
+            <span slot="title">课程管理</span>
           </template>
           <el-menu-item-group>
             <el-menu-item index="fail">Option 1</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span slot="title">评论管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/accountList">评论列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

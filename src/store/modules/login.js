@@ -1,5 +1,8 @@
 import user from '@/api/user.js'
-import { setLocalStorage, getLocalStorage } from '@/utils/auth'
+import {
+    setLocalStorage,
+    getLocalStorage
+} from '@/utils/auth'
 const state = {
     token: getLocalStorage('token'),
     email: ''
@@ -17,14 +20,22 @@ const mutations = {
     }
 }
 const actions = {
-    login({ commit }, requestData) {
+    login({
+        commit
+    }, requestData) {
         return new Promise((resolve, reject) => {
-            user.login(requestData).then(response => {
-                // console.log(response, '===');
-                commit('SET_EMAIL', requestData.email)
-                commit('SET_TOKEN', response.data.token)
-                setLocalStorage('token', response.data.token)
-                resolve(response)
+            user.login(requestData).then(({
+                status,
+                data,
+                config
+            }) => {
+                // console.log(res, '===');
+                if (status == 200) {
+                    commit('SET_EMAIL', JSON.parse(config.data).email)
+                    commit('SET_TOKEN', data.token)
+                    setLocalStorage('token', data.token)
+                    resolve(data)
+                }
             }).catch(err => reject(err))
         })
     }

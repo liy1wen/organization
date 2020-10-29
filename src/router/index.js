@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {
+    getLocalStorage
+} from '@/utils/auth'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -32,7 +35,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
     if (to.path !== '/') {
-        const token = window.localStorage.getItem('token');
+        const token = getLocalStorage('token');
         if (!token) {
             next('/')
         } else {
