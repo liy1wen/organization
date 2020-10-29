@@ -5,7 +5,7 @@ import {
 } from '@/utils/auth'
 const state = {
     token: getLocalStorage('token'),
-    email: ''
+    email: getLocalStorage('email')
 }
 const getters = {
     getToken: () => state.token,
@@ -34,6 +34,7 @@ const actions = {
                     commit('SET_EMAIL', JSON.parse(config.data).email)
                     commit('SET_TOKEN', data.token)
                     setLocalStorage('token', data.token)
+                    setLocalStorage('email', JSON.parse(config.data).email)
                     resolve(data)
                 }
             }).catch(err => reject(err))
