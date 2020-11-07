@@ -1,36 +1,38 @@
 <template>
   <div class="contain">
-    <el-form
-      :model="loginInfo"
-      :rules="rules"
-      ref="ruleForm"
-      label-width="0"
-      class="demo-ruleForm"
-    >
-      <h2 class="title f20">机构管理平台</h2>
-      <el-form-item label="" prop="email">
-        <el-input
-          prefix-icon="iconfont icon-icon"
-          type="text"
-          v-model="loginInfo.email"
-          placeholder="请输入账号"
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="" prop="password">
-        <el-input
-          prefix-icon="iconfont icon-mima"
-          type="password"
-          v-model="loginInfo.password"
-          placeholder="请输入密码"
-        ></el-input>
-      </el-form-item>
-      <el-form-item class="btn-group">
-        <el-button type="primary" @click="submitForm('ruleForm')"
-          >登录</el-button
-        >
-        <el-button @click="resetForm('ruleForm')">清空</el-button>
-      </el-form-item>
-    </el-form>
+    <el-card class="box-card">
+      <el-form
+        :model="loginInfo"
+        :rules="rules"
+        ref="ruleForm"
+        label-width="0"
+        class="demo-ruleForm"
+      >
+        <h1 class="title f36">机构管理平台</h1>
+        <el-form-item label="" prop="email">
+          <el-input
+            prefix-icon="iconfont icon-icon"
+            type="text"
+            v-model="loginInfo.email"
+            placeholder="请输入账号"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="" prop="password">
+          <el-input
+            prefix-icon="iconfont icon-mima"
+            type="password"
+            v-model="loginInfo.password"
+            placeholder="请输入密码"
+          ></el-input>
+        </el-form-item>
+        <el-form-item class="btn-group">
+          <el-button type="primary" class="f20" @click="submitForm('ruleForm')"
+            >登录</el-button
+          >
+          <el-button class="f20" @click="resetForm('ruleForm')">清空</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 <script>
@@ -64,20 +66,21 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .contain {
-  height: 100%;
-  background: url("https://img-blog.csdnimg.cn/20200324200558321.jpg") no-repeat;
-  background-size: cover;
+  height: 100vh;
+  // background: url("https://img-blog.csdnimg.cn/20200324200558321.jpg") no-repeat;
+  // background-size: cover;
+  background: #F0FFF8;
   display: flex;
   justify-content: center;
   align-items: center;
   .el-form {
-    width: 340px;
+    width: 480px;
     background: #ffffff;
     color: #333;
     border-radius: 5px;
-    padding: 30px 40px 10px 30px;
+    padding: 50px;
     .title {
       text-align: center;
       padding-bottom: 30px;
@@ -85,6 +88,16 @@ export default {
     .btn-group {
       display: flex;
       justify-content: center;
+      margin-top: 50px;
+      margin-bottom: 0;
+    }
+    .el-form-item{
+      .el-input{
+        font-size: 16px;
+          .el-input__inner{
+            height: 50px;
+          }
+      }
     }
   }
 }

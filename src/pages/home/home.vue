@@ -1,35 +1,51 @@
 <template>
-  <div>
-    <card :name="name" :date="date" :image="image">
-      <h4 class="title" slot="title">牛肉汉堡卡片</h4>
-      <h4 class="comment" slot="comment">评价：好吃不腻</h4>
-    </card>
-  </div>
+    <div class="map-container">
+      <el-amap vid="amapDemo" :zoom="zoom" :center="center" :events="events">
+      </el-amap>
+        <div class="toolbar">
+        position: [{{ lng }}, {{ lat }}] address: {{ address }}
+      </div>
+    </div>
 </template>
 <script>
-import card from '@c/card'
+
 export default {
-  components:{
-    card
-  },
   data() {
-    return {
-      name:'牛肉汉堡',
-      date:'2020-01-14 14:18:16',
-      image:'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
+    let self = this;
+    return{
+      zoom: 12,
+      center: [114.07, 22.33],
+      address: '',
+      events: {
+        click(e) {
+          let { lng, lat } = e.lnglat;
+          self.lng = lng;
+          self.lat = lat;
+
+          // 这里通过高德 SDK 完成。
+          var geocoder = new AMap.Geocoder({
+            radius: 1000,
+            extensions: "all"
+          });        
+          geocoder.getAddress([lng ,lat], function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+              if (result && result.regeocode) {
+                self.address = result.regeocode.formattedAddress;
+                self.$nextTick();
+              }
+            }
+          });        
+        }
+      },
+      lng: 0,
+      lat: 0
+      
     }
   },
 }
 </script>
 <style lang="scss" scoped>
-  .title{
-    height: 40px;
-    line-height: 25px;
-    text-align: center;
-  }
-  .comment{
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
+  .map-container{
+    height: 100%;
   }
 </style>

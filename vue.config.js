@@ -14,7 +14,7 @@ module.exports = {
     /* 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存，你可以通过将这个选项设为 false 来关闭文件名哈希。(false的时候就是让原来的文件名不改变) */
     filenameHashing: false,
     /* 代码保存时进行eslint检测 */
-    lintOnSave: true,
+    lintOnSave: false,
     /* 是否使用浏览器内编译器的完构建版本 */
     runtimeCompiler: false,
     /* webpack-dev-server 相关配置 */
@@ -23,7 +23,7 @@ module.exports = {
         open: true,
         /* 设置为0.0.0.0则所有的地址均能访问 */
         host: '0.0.0.0',
-        port: 3000,
+        port: 5000,
         https: false,
         hotOnly: true,
         /* 使用代理 */
@@ -71,9 +71,9 @@ module.exports = {
         },
     },
     chainWebpack: config => {
-        // config.optimization.minimize(true);
+        config.optimization.minimize(true);
         // config.optimization.splitChunks({
-        //     chunks:'all'
+        //     chunks: 'all'
         // })
     }
 }

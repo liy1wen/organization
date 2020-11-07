@@ -25,26 +25,25 @@
             <span slot="title">机构管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/userList">机构列表</el-menu-item>
+            <el-menu-item index="/organization">机构列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-
         <el-submenu index="2">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">用户管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/accountList">用户列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="3">
           <template slot="title">
             <i class="el-icon-document"></i>
             <span slot="title">课程管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="fail">Option 1</el-menu-item>
+            <el-menu-item index="/course">课程列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span slot="title">学员管理</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/user">用户列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="4">
@@ -53,7 +52,7 @@
             <span slot="title">评论管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/accountList">评论列表</el-menu-item>
+            <el-menu-item index="/review">评论列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
