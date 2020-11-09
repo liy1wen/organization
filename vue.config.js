@@ -1,7 +1,6 @@
 const path = require('path')
 module.exports = {
     /* 部署生产环境和开发环境下的URL：可对当前环境进行区分，baseUrl 从 Vue CLI 3.3 起已弃用，要使用publicPath */
-    /* baseUrl: process.env.NODE_ENV === 'production' ? './' : '/' */
     publicPath: process.env.NODE_ENV === 'production' ? '/public/' : './',
     /* 输出文件目录：在npm run build时，生成文件的目录名称 */
     outputDir: 'dist',
@@ -33,7 +32,8 @@ module.exports = {
                 target: 'http://192.168.1.4:8000/',
                 /* 允许跨域 */
                 changeOrigin: true,
-                ws: true,
+                ws: false, //如果要代理 websockets，配置这个参数
+                secure: false, // 如果是https接口，需要配置这个参数
                 pathRewrite: {
                     "^api": ''
                 }
