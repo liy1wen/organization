@@ -14,45 +14,13 @@
         class="el-menu-vertical-demo"
         unique-opened
       >
-        <el-menu-item index="home">
-          <i class="el-icon-menu"></i>
-          <span>主页</span>
-        </el-menu-item>
-
-        <el-submenu index="1">
+        <el-submenu v-for="(item,index) in routes" :key="index" :index="item.name">
           <template slot="title">
-            <i class="el-icon-location"></i>
-            <span slot="title">机构管理</span>
+            <i :class="item.icon"></i>
+            <span>{{item.name}}</span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="/organization">机构列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">
-            <i class="el-icon-document"></i>
-            <span slot="title">课程管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/course">课程列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="3">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">学员管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/user">用户列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="4">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">评论管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/review">评论列表</el-menu-item>
+          <el-menu-item-group v-for="(subItem,subIndex) in item.children" :key="subIndex">
+            <el-menu-item :index="subItem.path">{{subItem.name}}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -85,6 +53,7 @@ export default {
   data() {
     return {
       isCollapse: false,
+      routes: [{name: '主页',icon: 'el-icon-menu',children:[{name: '地图', path: '/home'}]},{name: '机构管理',icon: 'el-icon-location',children: [{name: '机构列表',path: '/organization'}]},{name: '课程管理',icon: 'el-icon-document',children:[{name: '课程列表', path: '/course'}]},{name: '学员管理',icon: 'el-icon-menu',children:[{name: '用户列表', path: '/user'}]},{name: '评论管理',icon: 'el-icon-menu',children:[{name: '评论列表', path: '/review'}]}]
     };
   },
   computed: {

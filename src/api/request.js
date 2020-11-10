@@ -4,16 +4,16 @@ import {
 } from 'element-ui'
 
 import axios from 'axios'
-import {
-    baseUrl
-} from '../../env.js'
+// import {
+//     baseUrl
+// } from '/env.js'
 import {
     getLocalStorage
 } from '@/utils/auth'
 
 
 var instance = axios.create({
-    baseURL: baseUrl, // 公共接口url（如果有多个的公共接口的话，需要处理）
+    baseURL: process.env.VUE_APP_BASEURL, // 公共接口url（如果有多个的公共接口的话，需要处理）
     timeout: 60000, // 请求超时 10s
 });
 // 头部
@@ -26,7 +26,7 @@ instance.interceptors.request.use(config => {
     let passport = getLocalStorage('token');
     config.headers.Authorization = 'Bearer ' + passport
     return config;
-}, function (error) {
+}, function(error) {
     return Promise.reject(error);
 });
 // 响应拦截

@@ -66,7 +66,7 @@ module.exports = {
         // Css-loader 时，使用 `{ Css: { ... } }`。
         loaderOptions: {
             scss: {
-                prependData: `@import "./src/assets/css/index.scss";`
+                prependData: `@import "./src/styles/css/index.scss";`
             }
         },
     },
