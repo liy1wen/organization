@@ -1,11 +1,12 @@
 import user from '@/api/user.js'
 import {
-    setLocalStorage,
-    getLocalStorage
-} from '@/utils/auth'
+    getCookie,
+    setCookie,
+    removeCookie
+} from '@/utils/app'
 const state = {
-    token: getLocalStorage('token'),
-    email: getLocalStorage('email')
+    token: getCookie('token') || '',
+    email: getCookie('email') || ''
 }
 const getters = {
     getToken: () => state.token,
@@ -33,11 +34,21 @@ const actions = {
                 if (status == 200) {
                     commit('SET_EMAIL', JSON.parse(config.data).email)
                     commit('SET_TOKEN', data.token)
-                    setLocalStorage('token', data.token)
-                    setLocalStorage('email', JSON.parse(config.data).email)
+                    setCookie('token', data.token)
+                    setCookie('email', JSON.parse(config.data).email)
                     resolve(data)
                 }
             }).catch(err => reject(err))
+        })
+    },
+    loginOut({
+        commit
+    }) {
+        return new Promise((resolve, reject) => {
+            commit('SET_EMAIL', '')
+            commit('SET_TOKEN', '')
+            removeCookie()
+            resolve()
         })
     }
 }

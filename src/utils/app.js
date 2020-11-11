@@ -1,11 +1,11 @@
 import cookie from 'js-cookie'
 
-export function getToken() {
-    return cookie.get('token')
+export function getCookie(key) {
+    return cookie.get(key)
 }
-export function setToken() {
-    return cookie.set('token')
+export function setCookie(key, val) {
+    return cookie.set(key, JSON.stringify(val))
 }
-export function removeToken() {
-    return cookie.remove('token')
+export function removeCookie() {
+    return cookie.remove(['token', 'email'])
 }

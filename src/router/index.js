@@ -1,68 +1,100 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import {
-    getLocalStorage
-} from '@/utils/auth'
+import layout from '@/pages/layout/index'
 
 Vue.use(VueRouter)
-const router = new VueRouter({
-        routes: [{
+const defaultRouter = new VueRouter({
+    mode: 'hash',
+    routes: [{
+            path: '/home',
+            name: 'home',
+            redirect: "index",
+            component: layout,
+            meta: {
+                name: "首页"
+            },
+            children: [{
                 path: '/index',
                 name: 'index',
                 component: () =>
-                    import ('@/pages/index/index.vue'),
-                children: [{
-                        path: '/home',
-                        name: 'home',
-                        component: () =>
-                            import ('@/pages/home/home.vue')
-                    },
-                    {
-                        path: '/organization',
-                        name: 'organization',
-                        component: () =>
-                            import ('@/pages/organization/organization.vue')
-                    }, {
-                        path: '/user',
-                        name: 'user',
-                        component: () =>
-                            import ('@/pages/user/user.vue')
-                    }, {
-                        path: '/course',
-                        name: 'course',
-                        component: () =>
-                            import ('@/pages/course/course.vue')
-                    }, {
-                        path: '/review',
-                        name: 'review',
-                        component: () =>
-                            import ('@/pages/review/review.vue')
-                    }
-                ]
+                    import ('@/pages/home/index.vue')
+            }]
+        },
+        {
+            path: '/organization',
+            name: 'organization',
+            component: layout,
+            meta: {
+                name: "机构管理"
             },
-            {
-                path: '/login',
-                name: 'login',
+            children: [{
+                path: '/organizationIndex',
+                name: 'organizationIndex',
                 component: () =>
-                    import ('@/pages/login/login.vue')
+                    import ('@/pages/organization/index.vue')
+            }]
+        },
+        {
+            path: '/course',
+            name: 'course',
+            component: layout,
+            meta: {
+                name: "课程管理"
             },
-            {
-                path: '/',
-                redirect: '/login'
+            children: [{
+                path: '/courseIndex',
+                name: 'courseIndex',
+                component: () =>
+                    import ('@/pages/course/index.vue')
+            }]
+        },
+        {
+            path: '/review',
+            name: 'review',
+            component: layout,
+            meta: {
+                name: "评论管理"
             },
-        ]
-    })
-    // router.beforeEach((to, from, next) => {
-    //     if (to.path !== '/') {
-    //         const token = getLocalStorage('token');
-    //         if (!token) {
-    //             next('/')
-    //         } else {
-    //             next()
-    //         }
-    //     } else {
-    //         next()
-    //     }
-    // })
+            children: [{
+                path: '/reviewIndex',
+                name: 'reviewIndex',
+                component: () =>
+                    import ('@/pages/review/index.vue')
+            }]
+        },
+        {
+            path: '/login',
+            name: 'login',
+            meta: {
+                name: "登录"
+            },
+            component: () =>
+                import ('@/pages/login/index.vue')
+        },
+        {
+            path: '/',
+            redirect: '/login'
+        },
+    ]
+})
 
-export default router
+export default defaultRouter
+
+export const asyncRouter = [{
+    path: '/user',
+    name: 'user',
+    component: layout,
+    meta: {
+        name: "用户管理",
+        role: ['admin']
+    },
+    children: [{
+        path: '/userIndex',
+        name: 'userIndex',
+        meta: {
+            role: ['admin']
+        },
+        component: () =>
+            import ('@/pages/user/index.vue')
+    }]
+}, ]
