@@ -6,7 +6,7 @@ import {
     removeCookie
 } from '@/utils/app'
 
-const whiteList = ['/index'] //路由白名单，无论是否登录都可以访问
+const whiteList = ['/login', '/404'] //路由白名单，无论是否登录都可以访问
 
 // 全局路由守卫判断
 router.beforeEach((to, from, next) => {
@@ -19,7 +19,14 @@ router.beforeEach((to, from, next) => {
         } else { //
             if (store.getters['role/role'] === '') { // 登录状态下,用户没有角色，需要重新拿到用户角色并生成路由
                 store.dispatch('role/getRole').then(res => {
-
+                    let role = res;
+                    store.dispatch('permission/createRouter', role).then(() => {
+                        let addRouters = store.getters['route/addRouters'];
+                        let allRouters = store.getters['route/allRouters'];
+                        router.options.routes = allRouters;
+                        router.addRoutes(addRouters)
+                        next({...to, replace: true })
+                    })
                 })
             }
         }

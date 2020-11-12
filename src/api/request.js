@@ -2,15 +2,9 @@ import {
     Message,
     Loading
 } from 'element-ui'
-
+import store from '../store/index'
 import axios from 'axios'
-// import {
-//     baseUrl
-// } from '/env.js'
-import {
-    getLocalStorage
-} from '@/utils/auth'
-
+import router from '../router/index'
 
 var instance = axios.create({
     baseURL: process.env.VUE_APP_BASEURL, // 公共接口url（如果有多个的公共接口的话，需要处理）
@@ -23,8 +17,10 @@ instance.interceptors.request.use(config => {
     // let loadingInstance = Loading.service({
     //     fullscreen: true
     // });
-    let passport = getLocalStorage('token');
-    config.headers.Authorization = 'Bearer ' + passport
+    let passport = store.getters['login/getToken'];
+    if (passport) {
+        config.headers.Authorization = 'Bearer ' + passport
+    }
     return config;
 }, function(error) {
     return Promise.reject(error);
@@ -36,13 +32,16 @@ instance.interceptors.response.use(
         // loadingInstance.close()
         console.log('_______________', error.response)
         if (error.response.status == 401) {
-            Message.error('用户未登录');
+            Message.error('登陆超时,请重新登录');
+            store.dispatch('login/loginOut').then(() => {
+                router.replace('/login')
+            })
         } else if (error.response.status == 403) {
             Message.error('暂无访问权限');
         } else if (error.response.status == 404) {
             Message.error('网络请求不存在');
         } else {
-            Message.error(error.response.data.message);
+            Message.error('系统异常');
         }
     });
 export default instance

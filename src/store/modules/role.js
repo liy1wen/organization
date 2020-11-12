@@ -21,7 +21,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             user.getinfo().then(res => {
                 commit.SET_ROLE(res.data.role)
-                resolve()
+                resolve(res.data.role)
             })
         })
     }

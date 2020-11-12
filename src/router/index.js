@@ -72,9 +72,27 @@ const defaultRouter = new VueRouter({
                 import ('@/pages/login/index.vue')
         },
         {
+            path: '/page404',
+            name: 'page404',
+            component: layout,
+            meta: {
+                name: "page404"
+            },
+            children: [{
+                path: '/404',
+                name: '404',
+                component: () =>
+                    import ('@/pages/review/index.vue')
+            }]
+        },
+        {
             path: '/',
             redirect: '/login'
         },
+        {
+            path: "*",
+            redirect: "/404"
+        }
     ]
 })
 
