@@ -9,7 +9,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .page-text{
 
-    }
 </style>

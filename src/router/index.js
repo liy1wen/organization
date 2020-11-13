@@ -35,7 +35,7 @@ const defaultRouter = new VueRouter({
             }]
         },
         {
-            path: '/course',
+            path: '/',
             name: 'course',
             component: layout,
             meta: {
@@ -72,17 +72,17 @@ const defaultRouter = new VueRouter({
                 import ('@/pages/login/index.vue')
         },
         {
-            path: '/page404',
-            name: 'page404',
+            path: '/404',
+            name: '404',
             component: layout,
             meta: {
-                name: "page404"
+                name: "404"
             },
             children: [{
-                path: '/404',
-                name: '404',
+                path: '/404page',
+                name: '404page',
                 component: () =>
-                    import ('@/pages/review/index.vue')
+                    import ('@/pages/404.vue')
             }]
         },
         {
@@ -91,7 +91,7 @@ const defaultRouter = new VueRouter({
         },
         {
             path: "*",
-            redirect: "/404"
+            redirect: "/404page"
         }
     ]
 })
