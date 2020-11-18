@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import store from './store/index' //引入vuex
-import router from './router' //引入路由
+import router from './router/index' //引入路由
 
 import '@/assets/font/iconfont.css' //引入图标
 

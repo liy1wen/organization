@@ -8,7 +8,7 @@ import { defaultRouter, asyncRouter } from '@/router/index'
  */
 function hasPermission(role, router) {
     if (router.meta && router.meta.role) {
-        return router.mera.role.includes(role)
+        return router.meta.role.includes(role)
     }
 }
 const state = {
@@ -38,7 +38,7 @@ const actions = {
                     if (hasPermission(role, item)) {
                         if (item.children && item.children.length > 0) {
                             item.children = item.children.filter(child_item => hasPermission(role, child_item))
-                            return item
+                                // return item
                         }
                         return item;
                     }

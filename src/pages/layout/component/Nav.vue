@@ -33,6 +33,9 @@ export default {
         routes: [{name: '控制台',icon: 'el-icon-menu',children:[{name: '地图', path: '/index'}]},{name: '机构管理',icon: 'el-icon-location',children: [{name: '机构列表',path: '/organizationIndex'}]},{name: '课程管理',icon: 'el-icon-document',children:[{name: '课程列表', path: '/courseIndex'}]},{name: '学员管理',icon: 'el-icon-menu',children:[{name: '用户列表', path: '/userIndex'}]},{name: '评论管理',icon: 'el-icon-menu',children:[{name: '评论列表', path: '/reviewIndex'}]}]
         };
     },
+    created() {
+      // this.routes = this.$router.options.routes;
+    },
 }
 </script>
 <style lang="scss" scoped>

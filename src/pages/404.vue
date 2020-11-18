@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-text tc">404</h1>
+        <h1 class="page-text tc">页面不存在！</h1>
     </div>
 </template>
 <script>

@@ -6,6 +6,15 @@ Vue.use(VueRouter)
 const defaultRouter = new VueRouter({
     mode: 'hash',
     routes: [{
+            path: '/login',
+            name: 'login',
+            meta: {
+                name: "登录"
+            },
+            component: () =>
+                import ('@/pages/login/index.vue')
+        },
+        {
             path: '/home',
             name: 'home',
             redirect: "index",
@@ -35,7 +44,7 @@ const defaultRouter = new VueRouter({
             }]
         },
         {
-            path: '/',
+            path: '/course',
             name: 'course',
             component: layout,
             meta: {
@@ -61,15 +70,6 @@ const defaultRouter = new VueRouter({
                 component: () =>
                     import ('@/pages/review/index.vue')
             }]
-        },
-        {
-            path: '/login',
-            name: 'login',
-            meta: {
-                name: "登录"
-            },
-            component: () =>
-                import ('@/pages/login/index.vue')
         },
         {
             path: '/404',
