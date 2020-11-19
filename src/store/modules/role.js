@@ -1,9 +1,9 @@
 import user from '@/api/user.js'
-import {
-    getCookie,
-    setCookie,
-    removeCookie
-} from '@/utils/app'
+// import {
+//     getCookie,
+//     setCookie,
+//     removeCookie
+// } from '@/utils/app'
 
 const state = {
     role: ''
